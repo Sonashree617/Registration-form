@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #Regform {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .form-container {
+            background-color: palevioletred;
+            padding: 30px 35px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 360px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+
+        input:focus {
+            border-color: #6c63ff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 30%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color:aqua;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition-duration: 5s;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form id="Regform">
+            <input type="text" id="name" placeholder="Enter Your Name">
+            <span class="error-message" id="nameError">Name cannot be empty</span>
+
+            <input type="text" id="email" placeholder="Enter Your Email">
+            <span class="error-message" id="emailError">Enter a valid email</span>
+
+            <input type="password" id="password" placeholder="Enter Your Password">
+            <span class="error-message" id="passwordError">Password must be at least 6 characters</span>
+
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        const submitBtn = document.getElementById('submitBtn');
+        const Regform = document.getElementById('Regform');
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function validateForm() {
+            let isValid = true;
+
+            // Name validation
+            if (nameInput.value.trim() === "") {
+                nameError.style.display = "block";
+                isValid = false;
+            } else {
+                nameError.style.display = "none";
+            }
+
+            // Email validation
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailError.style.display = "block";
+                isValid = false;
+            } else {
+                emailError.style.display = "none";
+            }
+
+            // Password validation
+            if (passwordInput.value.length < 6) {
+                passwordError.style.display = "block";
+                isValid = false;
+            } else {
+                passwordError.style.display = "none";
+            }
+
+            return isValid;
+        }
+
+        // Real-time validation
+        nameInput.addEventListener('input', validateForm);
+        emailInput.addEventListener('input', validateForm);
+        passwordInput.addEventListener('input', validateForm);
+
+        // Form submit
+        Regform.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (validateForm()) {
+                alert("Form submitted successfully!");
+                Regform.reset();
+            }
+        });
+    </script>
+</body>
+
+</html>
