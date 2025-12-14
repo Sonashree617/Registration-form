@@ -24,5 +24,4 @@ This project demonstrates **basic form validation** and a **toggleable side navi
 - **HTML** – Page structure
 - **CSS** – Styling and layout
 - **JavaScript** – Validation logic and sidenav toggle
-## 📂 Project Structure
 
